@@ -1,32 +1,29 @@
 require('../models/category-model');
-const mongoose = require('mongoose');
-const categoryModel = mongoose.model('category');
+const baseRepository = require('../bin/base/repository-base');
 
 class categoryRepository{
     constructor(){
-
+        this._baseRepository = new baseRepository('category');
     }
 
     async getAll(){
-        return await categoryModel.find();
+        return await this._baseRepository.getAll();
     }
 
     async getById(id){
-        return await categoryModel.findById(id);
+        return await this._baseRepository.getById(id);
     }
 
     async create(data){
-        let category = new categoryModel(data);
-        return await category.save();
+        return await this._baseRepository.create(data);
     }
 
     async update(id, data){
-        let category = categoryModel.findByIdAndUpdate(id, { $set: data });
-        return await categoryModel.findById(id);
+        return await this._baseRepository.update(id, data);
     }
 
     async delete(id){
-        return await categoryModel.findByIdAndRemove(id);
+        return await this._baseRepository.delete(id);
     }
 }
 
