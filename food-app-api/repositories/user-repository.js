@@ -1,11 +1,11 @@
 require('../models/user-model');
 
-const baseRepository = require('../bin/base/repository-base');
+const _baseRepository = require('../bin/base/repository-base');
 const md5 = require('md5');
 
 class userRepository{
     constructor(){
-        this._baseRepository = new baseRepository('user');
+        this._baseRepository = new _baseRepository('user');
         this._projection = 'name email _id';
     }    
 
@@ -23,21 +23,22 @@ class userRepository{
     }
 
     async getByEmail(email){
-        return await this.baseRepository._model.findOne({ email: email }, this._projection);
+        return await this._baseRepository._model.findOne({ email: email }, this._projection);
     }
 
     async create(data){
         let createdUser = await this._baseRepository.create(data);
-        return await this.baseRepository._model.findById(createdUser.id, this._projection);
+        return await this._baseRepository._model.findById(createdUser.id, this._projection);
     }
 
     async update(id, data){
-        let updatedUser = await this._baseRepository.update({
+        let updatedUser = await this._baseRepository.update(id, {
+            _id: id,
             name: data.name,
             email: data.email,
             image: data.image
         });
-        return await this.baseRepository._model.findById(updatedUser.id, this._projection);
+        return await this._baseRepository._model.findById(updatedUser.id, this._projection);
     }
 
     async delete(id){

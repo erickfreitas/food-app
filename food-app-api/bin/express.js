@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extend: false}));
 
 //Configurando a conexão com MongoDb
-mongoose.connect(variables.Database.connection);
+mongoose.connect(variables.Database.connection, { useNewUrlParser: true});
 
 app.use('/api/categories', categoryRouter);
 app.use('/api/products', productRouter);

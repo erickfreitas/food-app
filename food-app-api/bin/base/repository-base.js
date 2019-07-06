@@ -21,8 +21,8 @@ class repositoryBase{
     }
 
     async update(id, data){
-        let model = this._model.findByIdAndUpdate(id, { $set: data });
-        return await model.findById(id);
+        let model = await this._model.findByIdAndUpdate(id, { $set: data });
+        return await this._model.findById(id);
     }
 
     async delete(id){
