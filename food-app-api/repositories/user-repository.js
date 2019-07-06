@@ -1,11 +1,11 @@
 require('../models/user-model');
 
-const _baseRepository = require('../bin/base/repository-base');
+const baseRepository = require('../bin/base/repository-base');
 const md5 = require('md5');
 
 class userRepository{
     constructor(){
-        this._baseRepository = new _baseRepository('user');
+        this._baseRepository = new baseRepository('user');
         this._projection = 'name email _id';
     }    
 

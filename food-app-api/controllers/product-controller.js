@@ -1,6 +1,9 @@
 'user strict'
 
 const repository = require('../repositories/product-repository');
+const validation = require('../bin/helpers/validation');
+const controllerBase = require('../bin/base/controller-base');
+const _repository = new repository();
 
 
 function productController(){
@@ -8,23 +11,36 @@ function productController(){
 }
 
 productController.prototype.get = async (req, res) => {
-    res.status(200).send(await new repository().getAll());
+    controllerBase.get(_repository, req, res);
 };
 
 productController.prototype.getById = async (req, res) => {
-    res.status(200).send(await new repository().getById(req.params.id));
+    controllerBase.getById(_repository, req, res);
 };
 
 productController.prototype.post = async (req, res) => {
-    res.status(200).send(await new repository().create(req.body));
+    var validationContract = new validation();
+    validationContract.isRequired(req.body.name, 'Informe o nome.');
+    validationContract.isRequired(req.body.description, 'Informe a descrição.');
+    validationContract.isRequired(req.body.price, 'Informe o preço.');
+    validationContract.isRequired(req.body.image, 'Forneça a imagem.');
+    controllerBase.post(_repository, validationContract, req, res);
 };
 
 productController.prototype.put = async (req, res) => {
-    res.status(200).send(await new repository().update(req.params.id, req.body));
+    var validationContract = new validation();
+    validationContract.isRequired(req.body.name, 'Informe o nome.');
+    validationContract.isRequired(req.body.description, 'Informe a descrição.');
+    validationContract.isRequired(req.body.price, 'Informe o preço.');    
+    validationContract.isRequired(req.body.image, 'Forneça a imagem.');
+    validationContract.isRequired(req.params.id, 'Informe o id do produto que será editado.');  
+    if(req.body.price) 
+        validationContract.isTrue(req.body.price == 0, 'O preço deve ser maior do que zero.');
+    controllerBase.post(_repository, validationContract, req, res);
 };
 
 productController.prototype.delete = async (req, res) => {
-    res.status(200).send(await new repository().delete(req.params.id));
+    controllerBase.delete(_repository, req, res);
 };
 
 module.exports =  productController;

@@ -13,10 +13,10 @@ const app = express();
 
 //Configurando o parse do body para Json
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extend: false}));
+app.use(bodyParser.urlencoded({extend: false, extended: false }));
 
 //Configurando a conexão com MongoDb
-mongoose.connect(variables.Database.connection, { useNewUrlParser: true});
+mongoose.connect(variables.Database.connection, { useNewUrlParser: true, useCreateIndex: true});
 
 app.use('/api/categories', categoryRouter);
 app.use('/api/products', productRouter);

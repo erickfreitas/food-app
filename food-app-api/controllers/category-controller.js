@@ -1,6 +1,9 @@
 'user strict'
 
 const repository = require('../repositories/category-repository');
+const validation = require('../bin/helpers/validation');
+const controllerBase = require('../bin/base/controller-base');
+const _repository = new repository();
 
 
 function categoryController(){
@@ -8,23 +11,30 @@ function categoryController(){
 }
 
 categoryController.prototype.get = async (req, res) => {
-    res.status(200).send(await new repository().getAll());
+    controllerBase.get(_repository, req, res);
 };
 
 categoryController.prototype.getById = async (req, res) => {
-    res.status(200).send(await new repository().getById(req.params.id));
+    controllerBase.getById(_repository, req, res);
 };
 
 categoryController.prototype.post = async (req, res) => {
-    res.status(200).send(await new repository().create(req.body));
+    var validationContract = new validation();
+    validationContract.isRequired(req.body.title, "Informe o título.");
+    validationContract.isRequired(req.body.image, "Forneça a imagem.");
+    controllerBase.post(_repository, validationContract, req, res);
 };
 
 categoryController.prototype.put = async (req, res) => {
-    res.status(200).send(await new repository().update(req.params.id, req.body));
+    var validationContract = new validation();
+    validationContract.isRequired(req.body.title, "Informe o título.");
+    validationContract.isRequired(req.body.image, "Forneça a imagem.");
+    validationContract.isRequired(req.params.id, 'Informe o id da categoria que será editada.');  
+    controllerBase.put(_repository, validationContract, req, res);
 };
 
 categoryController.prototype.delete = async (req, res) => {
-    res.status(200).send(await new repository().delete(req.params.id));
+    controllerBase.delete(_repository, req, res);
 };
 
 module.exports =  categoryController;
