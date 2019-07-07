@@ -8,11 +8,8 @@ page-login {
         background: transparent !important;
     }
 
-    .red{
-        background: rgba(189, 8, 28, 0.6);
-        height: 100%;        
-        padding: 20px;
-        padding-top: 30%;
+    .scroll-content{
+        background: rgba(189, 8, 28, 0.6);     
     }
 
     .item-inner,
@@ -22,7 +19,8 @@ page-login {
 
     .logo{
         width: 100%;
-        text-align: center
+        text-align: center;
+        margin-top: 20%
     }
 
     .logo span{

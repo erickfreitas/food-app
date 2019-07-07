@@ -11,7 +11,7 @@ export class NetworkProvider {
     
   }
 
-  get isOnline(): any{
+  get isOnline(): boolean{
     if(this.platform.is('cordova')){
       if(navigator.connection && navigator.connection.type){
         return (navigator.connection.type != Connection.UNKNOWN && navigator.connection.type != Connection.NONE);

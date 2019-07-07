@@ -19,7 +19,7 @@ export class HttpProvider {
     this.spinner.show('Carregando os dados...')
 
     return new Promise((resolve) => {
-      if (this.network.isOnline()) {
+      if (this.network.isOnline) {
         this.http.get(url).subscribe(
           response => {
             this.spinner.hide()
@@ -38,4 +38,94 @@ export class HttpProvider {
     })
   }
 
+  post(url: string, model: any): Promise<HttpResultModel>{
+    this.spinner.show('Salvando informações...')
+
+    return new Promise((resolve) => {
+      if(this.network.isOnline){
+        this.http.post(url, model).subscribe(
+          response => {
+            this.spinner.hide()
+            resolve({ success: true, data: response, error: undefined })
+          }, error =>{
+            this.spinner.hide()
+            if(error.status == 400){
+              let message = ''
+              error.error.errors.forEach(_error => {
+                message += `<li>${_error.message}</li>`
+              });
+              this.alert.alert('Informação', message);
+            }
+            else{
+              this.spinner.hide()
+              this.alert.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom')
+            }
+            resolve({ success: false, data: undefined, error: error })
+          }
+        )
+      }
+      else{
+        this.spinner.hide()
+        this.alert.toast('Você está offline, e infelizmente não pode ser enviado os dados.', 'bottom')
+        resolve({ success: true, data: undefined, error: undefined })
+      }
+    })
+  }
+
+  put(url: string, model: any): Promise<HttpResultModel>{
+    this.spinner.show('Salvando informações...')
+
+    return new Promise((resolve) => {
+      if(this.network.isOnline){
+        this.http.put(url, model).subscribe(
+          response => {
+            this.spinner.hide()
+            resolve({ success: true, data: response, error: undefined })
+          }, error =>{
+            this.spinner.hide()
+            if(error.status == 400){
+              let message = ''
+              error.error.errors.forEach(_error => {
+                message += `<li>${_error.message}</li>`
+              });
+              this.alert.alert('Informação', message);
+            }
+            else{
+              this.spinner.hide()
+              this.alert.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom')
+            }
+            resolve({ success: false, data: undefined, error: error })
+          }
+        )
+      }
+      else{
+        this.spinner.hide()
+        this.alert.toast('Você está offline, e infelizmente não pode ser enviado os dados.', 'bottom')
+        resolve({ success: true, data: undefined, error: undefined })
+      }
+    })
+  }
+
+  delete(url: string): Promise<HttpResultModel>{
+    this.spinner.show('Carregando os dados...')
+
+    return new Promise((resolve) => {
+      if (this.network.isOnline) {
+        this.http.delete(url).subscribe(
+          response => {
+            this.spinner.hide()
+            resolve({ success: true, data: response, error: undefined })
+        }, error => {
+            this.spinner.hide()
+            this.alert.toast('Não possível foi possivel realizar a exclusão do registro.', 'bottom')
+            resolve({ success: false, data: undefined, error: error })
+        })
+      }
+      else{
+        this.spinner.hide()
+        this.alert.toast('Você está offline, e infelizmente não pode ser carregado os dados.', 'bottom')
+        resolve({ success: true, data: undefined, error: undefined})
+      }
+    })
+  }
 }
