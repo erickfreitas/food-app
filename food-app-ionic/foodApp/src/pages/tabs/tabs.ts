@@ -10,7 +10,7 @@ export class TabsPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private app: App) {
+              public app: App) {
   }
 
   ionViewDidLoad() {
@@ -18,7 +18,6 @@ export class TabsPage {
   }
 
   selectCategory(event):void{
-    console.log(event);
     let penultimateNavigation = event.linker._history[event.linker._history.length - 2]
     if(event.tabTitle == 'Categorias' && penultimateNavigation != '/categories'){
       this.app.getRootNav().setRoot('CategoriesPage');

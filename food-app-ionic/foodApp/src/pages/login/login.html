@@ -1,11 +1,35 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <button ion-button block (click)="openCategories()">
-    Efetuar Login
-  </button>
+<ion-content>
+  <div class="red">
+      <div class="logo">
+          <img src="/assets/imgs/icon-branco.png">
+          <span>Food App</span>
+        </div>
+      <ion-list >
+          <ion-item>
+            <ion-input type="text" placeholder="E-mail" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="password" placeholder="Senha" ></ion-input>
+          </ion-item>
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <button ion-button color="secondary" block round (click)="openCategories()">
+            Efetuar Login
+          </button>  
+        </ion-row>
+        <ion-row>
+          <button ion-button block outline color="secondary" round >
+            Cadastrar-se
+          </button>
+        </ion-row>
+      </ion-grid>  
+      <ion-grid>
+        <ion-row>
+          <button ion-button clear color="light">
+            Administrar Cadastros
+          </button>
+        </ion-row>
+      </ion-grid>
+  </div>
 </ion-content>
