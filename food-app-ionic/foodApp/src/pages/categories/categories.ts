@@ -12,11 +12,11 @@ export class CategoriesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoriesPage');
+    console.log('ionViewDidLoad CategoriesPage')
   }
 
   openProduct(): void{
-    this.navCtrl.setRoot('TabsPage');
+    this.navCtrl.setRoot('TabsPage')
   }
 
 }

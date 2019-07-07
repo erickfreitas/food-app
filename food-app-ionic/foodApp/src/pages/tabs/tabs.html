@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-tab tabIcon="pricetags" tabTitle="Categorias" [root]="'TabCategoryPage'"></ion-tab>
+  <ion-tab tabIcon="pricetags" tabTitle="Categorias" (ionSelect)="selectCategory($event)" [root]="'TabCategoryPage'"></ion-tab>
   <ion-tab tabIcon="menu" tabTitle="Meus Pedidos" [root]="'MyOrdersPage'"></ion-tab>
   <ion-tab tabIcon="contact" tabTitle="Minha Conta" [root]="'MyAccountPage'"></ion-tab>
 </ion-tabs>
