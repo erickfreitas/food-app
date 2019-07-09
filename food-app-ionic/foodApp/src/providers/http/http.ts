@@ -51,10 +51,15 @@ export class HttpProvider {
             this.spinner.hide()
             if(error.status == 400){
               let message = ''
-              error.error.errors.forEach(_error => {
+              console.log(error)
+              error.error.validation.forEach(_error => {                
                 message += `<li>${_error.message}</li>`
               });
-              this.alert.alert('Informação', message);
+              this.alert.alert(error.error.message, message)
+            }
+            else if(error.status == 404){
+              console.log(error);
+              this.alert.alert('Informação', error.error.message)
             }
             else{
               this.spinner.hide()
@@ -85,10 +90,13 @@ export class HttpProvider {
             this.spinner.hide()
             if(error.status == 400){
               let message = ''
-              error.error.errors.forEach(_error => {
+              error.error.validation.forEach(_error => {
                 message += `<li>${_error.message}</li>`
               });
-              this.alert.alert('Informação', message);
+              this.alert.alert(error.error.message, message)
+            }
+            else if(error.status == 404){
+              this.alert.toast('Informação', error.error.message)
             }
             else{
               this.spinner.hide()

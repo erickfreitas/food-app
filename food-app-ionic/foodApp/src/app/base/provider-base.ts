@@ -2,9 +2,8 @@ import { HttpResultModel } from '../models/http-result.model';
 import { HttpProvider } from '../../providers/http/http';
 
 export abstract class ProviderBase<T> {
-    constructor(public readonly url: string,
-                public http: HttpProvider) {
-        
+    constructor(private url: string,
+                public http: HttpProvider) {        
     }
 
     get(): Promise<HttpResultModel>{

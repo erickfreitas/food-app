@@ -8,12 +8,14 @@ import { HttpResultModel } from '../../app/models/http-result.model';
 @Injectable()
 export class UserProvider extends ProviderBase<UserModel>{
   
+  baseUrl: string = `${ConfigHelper.url}/users`
+
   constructor(public http: HttpProvider) {
     super(`${ConfigHelper.url}/users`, http)
   }
 
   async authenticate(email: string, password: string): Promise<HttpResultModel>{
-    return this.http.post(`${this.url}/authenticate`, { email: email, password: password })
+    return this.http.post(`${this.baseUrl}/authenticate`, { email: email, password: password })
   }
 
 }

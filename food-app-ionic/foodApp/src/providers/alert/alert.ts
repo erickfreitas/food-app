@@ -15,12 +15,13 @@ export class AlertProvider {
   }
 
   alert(title: string, message: string):void{
-    this.alertCtrl.create({
+    let alert = this.alertCtrl.create({
       title: title,
       message: message,
       buttons: ['Ok'],
       enableBackdropDismiss: false
     })
+    alert.present()
   }
 
   confirm(title: string, message:string, callback: any):void {
