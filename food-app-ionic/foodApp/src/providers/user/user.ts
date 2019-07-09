@@ -18,4 +18,8 @@ export class UserProvider extends ProviderBase<UserModel>{
     return this.http.post(`${this.baseUrl}/authenticate`, { email: email, password: password })
   }
 
+  async register(user: UserModel): Promise<HttpResultModel>{
+    return this.http.post(`${this.baseUrl}/register`, user)
+  }
+
 }

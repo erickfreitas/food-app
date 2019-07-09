@@ -1,4 +1,4 @@
-page-login {
+page-register {
     ion-content{
         background: url(/assets/imgs/fundo.jpg);
         background-size: cover
@@ -15,7 +15,7 @@ page-login {
     .item-inner,
     .list .item-input:last-child{
         border: none !important
-    }    
+    }
 
     .row{
         display: initial

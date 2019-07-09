@@ -27,4 +27,8 @@ export class LoginPage {
     }
     // this.navCtrl.setRoot('CategoriesPage')
   }
+
+  openRegister(): void{
+    this.navCtrl.setRoot('RegisterPage')
+  }
 }
