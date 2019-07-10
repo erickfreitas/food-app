@@ -1,3 +1,4 @@
+import { ConfigHelper } from './../../app/helpers/config-helper';
 import { UserProvider } from './../../providers/user/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -23,12 +24,15 @@ export class LoginPage {
   async login(): Promise<void>{
     let response = await this.userProvider.authenticate(this.form.email, this.form.password)
     if(response.success){
+      UserProvider.saveLogin(response)
       console.log(response);      
-    }
-    // this.navCtrl.setRoot('CategoriesPage')
+      this.navCtrl.setRoot('CategoriesPage')
+    }    
   }
 
   openRegister(): void{
     this.navCtrl.setRoot('RegisterPage')
   }
+
+  
 }

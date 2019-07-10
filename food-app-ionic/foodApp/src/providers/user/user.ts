@@ -22,4 +22,14 @@ export class UserProvider extends ProviderBase<UserModel>{
     return this.http.post(`${this.baseUrl}/register`, user)
   }
 
+  static saveLogin(result: any): void {
+    localStorage.setItem(ConfigHelper.storageKeys.token, result.data.token)
+    localStorage.setItem(ConfigHelper.storageKeys.user, JSON.stringify(result.data.user))
+  }
+
+  static get isLogged(): boolean {
+    let token = localStorage.getItem(ConfigHelper.storageKeys.token);
+    return token !== undefined && token !== null
+  }
+
 }
