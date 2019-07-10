@@ -28,13 +28,18 @@ userController.prototype.post = async (req, res) => {
     validationContract.isRequired(req.body.password, 'Informe a senha.');
     validationContract.isRequired(req.body.confirmPassword, 'Confirme a senha');
     validationContract.isTrue(req.body.password !== req.body.confirmPassword, 'A senha e confirmação de senha devem ser iguais.');
-    let userByEmail = await _repository.getByEmail(req.body.email);
-    if(userByEmail != undefined){
-        validationContract.isTrue(true, `O e-mail ${userByEmail.email} já está em uso.`);
-    }
+
+    if(req.body.email){
+        let userByEmail = await _repository.getByEmail(req.body.email);
+        if(userByEmail != undefined){
+            validationContract.isTrue(true, `O e-mail ${userByEmail.email} já está em uso.`);
+        }
+    }    
 
     //Criptografando senha
-    req.body.password = md5(req.body.password);
+    if(req.body.password){
+        req.body.password = md5(req.body.password);
+    }    
 
     await controllerBase.post(_repository, validationContract, req, res);
 };
