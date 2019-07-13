@@ -1,4 +1,3 @@
-import { ConfigHelper } from './../../app/helpers/config-helper';
 import { UserProvider } from './../../providers/user/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';

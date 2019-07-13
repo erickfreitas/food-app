@@ -19,4 +19,8 @@ export class CategoriesPage {
     this.navCtrl.setRoot('TabsPage')
   }
 
+  openCategory(): void{
+    this.navCtrl.push('AdmCategoriesPage')
+  }
+
 }
