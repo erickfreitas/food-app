@@ -19,13 +19,12 @@
       <ion-input type="text" [(ngModel)]="category.title"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-textarea [(ngModel)]="category.description" rows="4" placeholder="Adicione a descrição da categoria"></ion-textarea>
+        <ion-label floating>Descrição</ion-label>
+        <ion-textarea [(ngModel)]="category.description" rows="4" aria-placeholder="Adicione a descrição da categoria"></ion-textarea>
     </ion-item>    
     <ion-item text-center>
       <button ion-button clear >
-        <ion-icon name="camera" item-left>
-          Selecionar Foto
-        </ion-icon>
+        <ion-icon name="camera" item-left></ion-icon>Selecionar Foto
       </button>
     </ion-item>
   </ion-list>
