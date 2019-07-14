@@ -3,7 +3,7 @@
     <ion-title>Categoria</ion-title>
   </ion-navbar>
   <ion-buttons right>
-    <button ion-button clear >
+    <button ion-button clear (click)="saveOrEdit(category)" >
       Salvar
     </button>
     <button ion-button icon-only >
@@ -23,9 +23,12 @@
         <ion-textarea [(ngModel)]="category.description" rows="4" aria-placeholder="Adicione a descrição da categoria"></ion-textarea>
     </ion-item>    
     <ion-item text-center>
-      <button ion-button clear >
+      <button ion-button clear (click)="getPictureOption()">
         <ion-icon name="camera" item-left></ion-icon>Selecionar Foto
       </button>
+    </ion-item>
+    <ion-item *ngIf="category.image">
+      <img [src]="category.image">
     </ion-item>
   </ion-list>
 </ion-content>

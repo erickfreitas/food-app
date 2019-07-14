@@ -59,7 +59,7 @@ export class HttpProvider {
 
     return new Promise((resolve) => {
       if(this.network.isOnline){
-        this.http.post(url, model).subscribe(
+        this.http.post(url, model, { headers: this.createHeader() }).subscribe(
           response => {
             this.spinner.hide()
             resolve({ success: true, data: response, error: undefined })
@@ -98,7 +98,7 @@ export class HttpProvider {
 
     return new Promise((resolve) => {
       if(this.network.isOnline){
-        this.http.put(url, model).subscribe(
+        this.http.put(url, model, { headers: this.createHeader() }).subscribe(
           response => {
             this.spinner.hide()
             resolve({ success: true, data: response, error: undefined })
@@ -135,7 +135,7 @@ export class HttpProvider {
 
     return new Promise((resolve) => {
       if (this.network.isOnline) {
-        this.http.delete(url).subscribe(
+        this.http.delete(url, { headers: this.createHeader() }).subscribe(
           response => {
             this.spinner.hide()
             resolve({ success: true, data: response, error: undefined })

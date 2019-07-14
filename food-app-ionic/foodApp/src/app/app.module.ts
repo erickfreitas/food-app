@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -37,7 +38,8 @@ import { CameraProvider } from '../providers/camera/camera';
     NetworkProvider,
     UserProvider,
     CategoryProvider,
-    CameraProvider
+    CameraProvider,
+    Camera
   ]
 })
 export class AppModule {}

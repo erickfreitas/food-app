@@ -12,8 +12,8 @@ const userRouter = require('../routes/user-router');
 const app = express();
 
 //Configurando o parse do body para Json
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extend: false, extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extend: false, extended: false }));
 
 //Configurando a conexão com MongoDb
 mongoose.connect(variables.Database.connection, { useNewUrlParser: true, useCreateIndex: true});

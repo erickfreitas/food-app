@@ -1,6 +1,7 @@
 export class CategoryModel{
-    title: String
-    description: String
-    image: String
+    _id: string
+    title: string
+    description: string
+    image: string
     active: boolean
 }
