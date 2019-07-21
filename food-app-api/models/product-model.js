@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const productModel = new schema({
+    categoryId: { type: schema.Types.ObjectId, ref: 'category' },
     name: { type: String, required: true, trim: true, index: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },

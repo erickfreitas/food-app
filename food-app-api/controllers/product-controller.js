@@ -24,6 +24,7 @@ productController.prototype.post = async (req, res) => {
     validationContract.isRequired(req.body.description, 'Informe a descrição.');
     validationContract.isRequired(req.body.price, 'Informe o preço.');
     validationContract.isRequired(req.body.image, 'Forneça a imagem.');
+    validationContract.isRequired(req.body.categoryId, 'Informe a categoria do produto.');
     controllerBase.post(_repository, validationContract, req, res);
 };
 
@@ -34,6 +35,7 @@ productController.prototype.put = async (req, res) => {
     validationContract.isRequired(req.body.price, 'Informe o preço.');    
     validationContract.isRequired(req.body.image, 'Forneça a imagem.');
     validationContract.isRequired(req.params.id, 'Informe o id do produto que será editado.');  
+    validationContract.isRequired(req.body.categoryId, 'Informe a categoria do produto.');
     if(req.body.price) 
         validationContract.isTrue(req.body.price == 0, 'O preço deve ser maior do que zero.');
     controllerBase.post(_repository, validationContract, req, res);
