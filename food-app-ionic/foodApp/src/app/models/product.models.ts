@@ -1,7 +1,9 @@
 export class ProductModel{
     _id: string
-    title: string
+    categoryId: string
+    name: string
     description: string
     image: string
+    price: number
     active: boolean
 }

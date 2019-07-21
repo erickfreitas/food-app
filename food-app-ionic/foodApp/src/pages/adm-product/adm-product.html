@@ -15,13 +15,23 @@
 <ion-content no-padding>
   <ion-list no-lines>    
     <ion-item>
-      <ion-label floating>Título</ion-label>
-      <ion-input type="text" [(ngModel)]="product.title"></ion-input>
+      <ion-label floating>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="product.name"></ion-input>
+    </ion-item>    
+    <ion-item>
+      <ion-label floating>Preço</ion-label>
+      <ion-input type="number" [(ngModel)]="product.price"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label floating>Descrição</ion-label>
         <ion-textarea [(ngModel)]="product.description" rows="4" aria-placeholder="Adicione a descrição do produto"></ion-textarea>
-    </ion-item>    
+    </ion-item>
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select [(ngModel)]="product.categoryId">
+        <ion-option value="{{category._id}}" *ngFor="let category of categories">{{category.title}}</ion-option>        
+      </ion-select>
+    </ion-item>            
     <ion-item text-center>
       <button ion-button clear (click)="getPictureOption()">
         <ion-icon name="camera" item-left></ion-icon>Selecionar Foto

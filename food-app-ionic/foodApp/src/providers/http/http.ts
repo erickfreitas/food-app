@@ -33,7 +33,6 @@ export class HttpProvider {
 
   get(url: string): Promise<HttpResultModel>{
     this.spinner.show('Carregando os dados...')
-
     return new Promise((resolve) => {
       if (this.network.isOnline) {
         this.http.get(url, { headers: this.createHeader() }).subscribe(

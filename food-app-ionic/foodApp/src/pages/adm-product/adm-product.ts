@@ -1,3 +1,4 @@
+import { CategoryModel } from './../../app/models/category.model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, Platform } from 'ionic-angular';
 import { ProductModel } from '../../app/models/product.models';
@@ -5,6 +6,7 @@ import { ProductProvider } from '../../providers/product/product';
 import { HttpResultModel } from '../../app/models/http-result.model';
 import { CameraProvider } from '../../providers/camera/camera';
 import { AlertProvider } from '../../providers/alert/alert';
+import { CategoryProvider } from '../../providers/category/category';
 
 /**
  * Generated class for the AdmProductPage page.
@@ -21,6 +23,7 @@ import { AlertProvider } from '../../providers/alert/alert';
 export class AdmProductPage {
 
   product: ProductModel = new ProductModel()
+  categories: Array<CategoryModel> = new Array<CategoryModel>()
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -28,23 +31,24 @@ export class AdmProductPage {
               public platform: Platform,
               public camera: CameraProvider,
               public productProvider: ProductProvider,
+              public categoryProvider: CategoryProvider,
               public alert: AlertProvider) {
+                this._loadData()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmProductPage');
     let _product = <ProductModel>this.navParams.get('_product')
     if (_product != undefined) this.product = _product
-    console.log(this.product)
   }
 
   async remove(): Promise<void>{
     try{
-      this.alert.confirm("Excluir?", `Deseja realmente excluir o produto ${this.product.title}?`, async () => {
+      this.alert.confirm("Excluir?", `Deseja realmente excluir o produto ${this.product.name}?`, async () => {
         let result = await this.productProvider.delete(this.product._id)
         if (result.success){
           this.alert.toast('Produto excluída com sucesso', 'buttom')
-          this.navCtrl.setRoot('AdmCategoriesPage')
+          this.navCtrl.setRoot('AdmProductsPage')
         }
       })
     }
@@ -65,7 +69,7 @@ export class AdmProductPage {
       this.alert.toast('Cadastro atualizado com sucesso.', 'buttom')
     }    
     if (result.success){      
-      this.navCtrl.setRoot('AdmCategoriesPage')
+      this.navCtrl.setRoot('AdmProductsPage')
     }
   }
 
@@ -102,6 +106,18 @@ export class AdmProductPage {
       ]
     })
     actionSheet.present()
+  }
+
+  private async _loadData(): Promise<void>{
+    try{
+      let result = await this.categoryProvider.get();
+      if (result.success){
+        this.categories = <Array<CategoryModel>>result.data
+      }
+    }
+    catch(error){
+
+    }
   }
 
 }
