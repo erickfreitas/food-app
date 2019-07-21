@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Categoria</ion-title>
+    <ion-title>Produto</ion-title>
   </ion-navbar>
   <ion-buttons right>
-    <button ion-button clear (click)="saveOrEdit(category)" >
+    <button ion-button clear (click)="saveOrEdit(product)" >
       Salvar
     </button>
-    <button *ngIf="category._id" ion-button icon-only (click)="remove()">
+    <button *ngIf="product._id" ion-button icon-only (click)="remove()">
       <ion-icon name="trash"></ion-icon>
     </button>
   </ion-buttons>
@@ -16,19 +16,19 @@
   <ion-list no-lines>    
     <ion-item>
       <ion-label floating>Título</ion-label>
-      <ion-input type="text" [(ngModel)]="category.title"></ion-input>
+      <ion-input type="text" [(ngModel)]="product.title"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label floating>Descrição</ion-label>
-        <ion-textarea [(ngModel)]="category.description" rows="4" aria-placeholder="Adicione a descrição da categoria"></ion-textarea>
+        <ion-textarea [(ngModel)]="product.description" rows="4" aria-placeholder="Adicione a descrição do produto"></ion-textarea>
     </ion-item>    
     <ion-item text-center>
       <button ion-button clear (click)="getPictureOption()">
         <ion-icon name="camera" item-left></ion-icon>Selecionar Foto
       </button>
     </ion-item>
-    <ion-item *ngIf="category.image">
-      <img [src]="category.image">
+    <ion-item *ngIf="product.image">
+      <img [src]="product.image">
     </ion-item>
   </ion-list>
 </ion-content>

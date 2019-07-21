@@ -1,60 +1,67 @@
-import { HttpResultModel } from './../../app/models/http-result.model';
-import { AlertProvider } from './../../providers/alert/alert';
-import { CategoryProvider } from './../../providers/category/category';
-import { CameraProvider } from './../../providers/camera/camera';
-import { CategoryModel } from './../../app/models/category.model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, Platform } from 'ionic-angular';
+import { ProductModel } from '../../app/models/product.models';
+import { ProductProvider } from '../../providers/product/product';
+import { HttpResultModel } from '../../app/models/http-result.model';
+import { CameraProvider } from '../../providers/camera/camera';
+import { AlertProvider } from '../../providers/alert/alert';
+
+/**
+ * Generated class for the AdmProductPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-adm-category',
-  templateUrl: 'adm-category.html',
+  selector: 'page-adm-product',
+  templateUrl: 'adm-product.html',
 })
-export class AdmCategoryPage {
+export class AdmProductPage {
 
-  category: CategoryModel = new CategoryModel()
+  product: ProductModel = new ProductModel()
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public actionSheetCtrl: ActionSheetController,
               public platform: Platform,
               public camera: CameraProvider,
-              public categoryProvider: CategoryProvider,
+              public productProvider: ProductProvider,
               public alert: AlertProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdmCategoryPage');
-    let _category = <CategoryModel>this.navParams.get('_category')
-    if (_category != undefined) this.category = _category
-    console.log(this.category)
+    console.log('ionViewDidLoad AdmProductPage');
+    let _product = <ProductModel>this.navParams.get('_product')
+    if (_product != undefined) this.product = _product
+    console.log(this.product)
   }
 
   async remove(): Promise<void>{
     try{
-      this.alert.confirm("Excluir?", `Deseja realmente excluir a categoria ${this.category.title}?`, async () => {
-        let result = await this.categoryProvider.delete(this.category._id)
+      this.alert.confirm("Excluir?", `Deseja realmente excluir o produto ${this.product.title}?`, async () => {
+        let result = await this.productProvider.delete(this.product._id)
         if (result.success){
-          this.alert.toast('Categoria excluída com sucesso', 'buttom')
+          this.alert.toast('Produto excluída com sucesso', 'buttom')
           this.navCtrl.setRoot('AdmCategoriesPage')
         }
       })
     }
     catch(error){
-      this.alert.toast('Houve uma falha ao tentar excluir a categoria.', 'buttom')
+      this.alert.toast('Houve uma falha ao tentar excluir o produto.', 'buttom')
     }
   }
 
-  async saveOrEdit(category: CategoryModel): Promise<void>{
+  async saveOrEdit(product: ProductModel): Promise<void>{
     let result = new HttpResultModel()
     debugger
-    if (category._id == null){
-      result = await this.categoryProvider.post(category)
+    if (product._id == null){
+      result = await this.productProvider.post(product)
       this.alert.toast('Cadastro realizado com sucesso.', 'buttom')
     }
     else{
-      result = await this.categoryProvider.put(category._id, category)
+      result = await this.productProvider.put(product._id, product)
       this.alert.toast('Cadastro atualizado com sucesso.', 'buttom')
     }    
     if (result.success){      
@@ -70,7 +77,7 @@ export class AdmCategoryPage {
           text: 'Tirar Foto', 
           handler: () => {
             this.camera.takePicture(photo => {
-              this.category.image = photo
+              this.product.image = photo
             })
           }, 
           icon: this.platform.is('ios') ? null : 'camera' 
@@ -79,7 +86,7 @@ export class AdmCategoryPage {
           text: 'Pegar da Galeria',
           handler: () => {
             this.camera.getPictureFromGalery(photo => {
-              this.category.image = photo
+              this.product.image = photo
             })
           },
           icon: this.platform.is('ios') ? null : 'images'

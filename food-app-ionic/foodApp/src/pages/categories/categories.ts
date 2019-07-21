@@ -15,8 +15,12 @@ export class CategoriesPage {
     console.log('ionViewDidLoad CategoriesPage')
   }
 
-  openProduct(): void{
+  openTabs(): void{
     this.navCtrl.setRoot('TabsPage')
+  }
+
+  openProduct(): void{
+    this.navCtrl.push('AdmProductsPage')
   }
 
   openCategory(): void{
