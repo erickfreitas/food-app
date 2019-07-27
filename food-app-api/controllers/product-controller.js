@@ -38,7 +38,7 @@ productController.prototype.put = async (req, res) => {
     validationContract.isRequired(req.body.categoryId, 'Informe a categoria do produto.');
     if(req.body.price) 
         validationContract.isTrue(req.body.price == 0, 'O preço deve ser maior do que zero.');
-    controllerBase.post(_repository, validationContract, req, res);
+    controllerBase.put(_repository, validationContract, req, res);
 };
 
 productController.prototype.delete = async (req, res) => {

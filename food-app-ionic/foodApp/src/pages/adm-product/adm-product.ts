@@ -1,7 +1,7 @@
 import { CategoryModel } from './../../app/models/category.model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, Platform } from 'ionic-angular';
-import { ProductModel } from '../../app/models/product.models';
+import { ProductModel } from '../../app/models/product.model';
 import { ProductProvider } from '../../providers/product/product';
 import { HttpResultModel } from '../../app/models/http-result.model';
 import { CameraProvider } from '../../providers/camera/camera';
@@ -39,7 +39,10 @@ export class AdmProductPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdmProductPage');
     let _product = <ProductModel>this.navParams.get('_product')
-    if (_product != undefined) this.product = _product
+    if (_product != undefined && _product._id != undefined){
+      this.product = _product
+      this.product.categoryId = _product.categoryId._id
+    }
   }
 
   async remove(): Promise<void>{

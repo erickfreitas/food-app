@@ -1,5 +1,7 @@
+import { CategoryProvider } from './../../providers/category/category';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { CategoryModel } from '../../app/models/category.model';
 
 @IonicPage()
 @Component({
@@ -8,23 +10,56 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CategoriesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  categories: Array<CategoryModel> = new Array<CategoryModel>()
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private categoryProvider: CategoryProvider,
+              private actionSheetController: ActionSheetController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoriesPage')
   }
 
+  ionViewWillEnter(){
+    this._loadData()
+  }
+
   openTabs(): void{
     this.navCtrl.setRoot('TabsPage')
   }
 
-  openProduct(): void{
+  private openProduct(): void{
     this.navCtrl.push('AdmProductsPage')
   }
 
-  openCategory(): void{
+  private openCategory(): void{
     this.navCtrl.push('AdmCategoriesPage')
+  }
+
+  private adminOptions(): void{
+    let action = this.actionSheetController.create({
+      title: 'Administração',
+      buttons: [
+        { text: 'Gerenciar Categorias', handler: () => { this.openCategory() } },
+        { text: 'Gerenciar Produtos', handler: () => { this.openProduct() } },
+        { text: 'Cancelar', handler: () => { }, role: 'destructive' }
+      ]
+    })
+    action.present()
+  }
+
+  private async _loadData(): Promise<void>{
+    try{
+      let result = await this.categoryProvider.get();
+      if (result.success){
+        this.categories = <Array<CategoryModel>>result.data
+      }
+    }
+    catch(error){
+
+    }
   }
 
 }

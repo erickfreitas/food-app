@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Categorias</ion-title>
-  </ion-navbar>
-</ion-header>
 <ion-content padding>
-  <button ion-button block (click)="openCategory()">Gerenciar Categoria</button>
-  <button ion-button block (click)="openProduct()">Abrir Produto</button>
+  <div class="admin" >
+    <button ion-button icon-only clear color="light" (click)="adminOptions()">
+      <ion-icon name="settings"></ion-icon>
+    </button>
+  </div>
+  <div class="blur"></div>
+  <p class=title>O que deseja comer hoje?</p>
+  <div class="category" *ngFor="let category of categories">
+    <div class="image" [ngStyle]="{'background-image': 'url(' + category.image + ')'}">
+
+    </div>
+    <p>{{category.title}}</p>
+  </div>
 </ion-content>

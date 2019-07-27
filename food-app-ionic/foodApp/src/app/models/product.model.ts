@@ -1,6 +1,6 @@
 export class ProductModel{
     _id: string
-    categoryId: string
+    categoryId: any
     name: string
     description: string
     image: string

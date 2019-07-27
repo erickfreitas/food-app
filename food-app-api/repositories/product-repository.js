@@ -7,7 +7,7 @@ class productRepository{
     }
 
     async getAll(){
-        return await this._baseRepository.getAll();
+        return await this._baseRepository._model.find().populate('categoryId', '_id title');
     }
 
     async getById(id){

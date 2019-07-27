@@ -1,7 +1,7 @@
 import { ProductProvider } from './../../providers/product/product';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ProductModel } from '../../app/models/product.models';
+import { ProductModel } from '../../app/models/product.model';
 
 @IonicPage()
 @Component({
@@ -11,6 +11,7 @@ import { ProductModel } from '../../app/models/product.models';
 export class AdmProductsPage {
 
   products: Array<ProductModel> = new Array<ProductModel>()
+  isLoading: boolean = true
 
   constructor(
     public navCtrl: NavController, 
@@ -24,10 +25,16 @@ export class AdmProductsPage {
     console.log('ionViewDidLoad AdmProductsPage');
   }
 
+  ionViewWillEnter() {
+    this.isLoading = true;
+    this._loadData()
+  }
+
   private async _loadData(): Promise<void>{
     try{
-      let result = await this.productProvider.get();
+      let result = await this.productProvider.get()
       if (result.success){
+        this.isLoading = false
         this.products = <Array<ProductModel>>result.data
       }
     }
