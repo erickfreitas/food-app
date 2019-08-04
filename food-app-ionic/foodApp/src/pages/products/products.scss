@@ -56,6 +56,8 @@ page-products {
        height: 100px;
        margin-right: 10px;
        border-radius: 10px;
+       background-size: cover;
+       background-position: 50% 50%;
    }
    .product .price span {
        font-weight: bold;

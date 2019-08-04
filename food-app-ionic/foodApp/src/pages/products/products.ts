@@ -35,7 +35,6 @@ export class ProductsPage {
       let productsResult = await this.productProvider.getByCategoryId(this.selectedCategory._id);
       if (productsResult.success){
         this.products = <Array<ProductModel>>productsResult.data
-        console.log(this.products)
       }
     }
     catch(error){
