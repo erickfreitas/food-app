@@ -1,0 +1,14 @@
+quantity {
+    float: right;    
+    button {        
+        width: 25px;
+        height: 25px !important;
+    }
+    button[color=light] {
+        float: left;
+    }
+    span.number{
+        float: left;
+        margin: 9px 10px 0 10px;
+    }
+}
