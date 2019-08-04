@@ -18,6 +18,21 @@ productController.prototype.getById = async (req, res) => {
     controllerBase.getById(_repository, req, res);
 };
 
+productController.prototype.getByCategoryId = async (req, res) => {
+    try{
+        if(req.params.id){
+            res.status(200).send(await _repository.getByCategoryId(req.params.id));
+        }
+        else{
+            res.status(400).send({ message: "The Id parameter need to be provided."})
+        }
+    }
+    catch(error){
+        console.log(`Error in request, reason: ${error}`);
+        res.status(500).send({ message: "Error while processing.", error: error });
+    } 
+}
+
 productController.prototype.post = async (req, res) => {
     var validationContract = new validation();
     validationContract.isRequired(req.body.name, 'Informe o nome.');

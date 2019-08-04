@@ -62,7 +62,6 @@ export class AdmProductPage {
 
   async saveOrEdit(product: ProductModel): Promise<void>{
     let result = new HttpResultModel()
-    debugger
     if (product._id == null){
       result = await this.productProvider.post(product)
       this.alert.toast('Cadastro realizado com sucesso.', 'buttom')

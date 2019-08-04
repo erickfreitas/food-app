@@ -1,3 +1,4 @@
+import { ConfigHelper } from './../../app/helpers/config-helper';
 import { CategoryProvider } from './../../providers/category/category';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
@@ -26,7 +27,8 @@ export class CategoriesPage {
     this._loadData()
   }
 
-  openTabs(): void{
+  openProducts(category: CategoryModel): void{
+    localStorage.setItem(ConfigHelper.storageKeys.selectedCategory, JSON.stringify(category))
     this.navCtrl.setRoot('TabsPage')
   }
 

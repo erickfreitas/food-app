@@ -1,3 +1,4 @@
+import { HttpResultModel } from './../../app/models/http-result.model';
 import { Injectable } from '@angular/core';
 import { ProviderBase } from '../../app/base/provider-base';
 import { ConfigHelper } from '../../app/helpers/config-helper';
@@ -11,5 +12,9 @@ export class ProductProvider extends ProviderBase<ProductModel>{
 
   constructor(public http: HttpProvider) {
     super(`${ConfigHelper.url}/products`, http)
+  }
+
+  async getByCategoryId(id: string): Promise<HttpResultModel>{
+    return await this.http.get(`${this.baseUrl}/category/${id}`)
   }
 }

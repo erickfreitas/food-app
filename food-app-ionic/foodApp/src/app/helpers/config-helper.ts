@@ -3,6 +3,7 @@ export class ConfigHelper{
     public static url: string = "/app"
     public static storageKeys = {
         token: 'foodapp.token',
-        user: 'foodapp.user'
+        user: 'foodapp.user',
+        selectedCategory: 'foodapp.selected.category'
     }
 }

@@ -14,6 +14,10 @@ class productRepository{
         return await this._baseRepository.getById(id);
     }
 
+    async getByCategoryId(categoryId){
+        return await this._baseRepository._model.find({ categoryId: categoryId });
+    }
+
     async create(data){
         return await this._baseRepository.create(data);
     }

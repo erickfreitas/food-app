@@ -9,6 +9,7 @@ let _controller = new controller();
 
 router.get('/', auth, _controller.get);
 router.get('/:id',auth, _controller.getById);
+router.get('/category/:id',auth, _controller.getByCategoryId);
 router.post('/', auth,  _controller.post);
 router.put('/:id', auth, _controller.put);
 router.delete('/:id', auth, _controller.delete);

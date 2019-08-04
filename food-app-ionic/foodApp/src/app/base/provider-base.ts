@@ -7,7 +7,7 @@ export abstract class ProviderBase<T> {
     }
 
     get(): Promise<HttpResultModel>{
-        return this.http.get(this.url);
+        return this.http.get(this.url)
     }
 
     getById(id: string): Promise<HttpResultModel>{
@@ -23,6 +23,6 @@ export abstract class ProviderBase<T> {
     }
 
     delete(id: string): Promise<HttpResultModel>{
-        return this.http.delete(`${this.url}/${id}`);
+        return this.http.delete(`${this.url}/${id}`)
     }
 }
