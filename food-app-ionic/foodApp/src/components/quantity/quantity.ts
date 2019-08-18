@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'quantity',
@@ -6,19 +6,24 @@ import { Component } from '@angular/core';
 })
 export class QuantityComponent {
   quantity: number = 0
-  text: string;
+
+  @Output() quantityChanged = new EventEmitter()
 
   constructor() {
     console.log('Hello QuantityComponent Component');
-    this.text = 'Hello World';
   }
 
   add(){
     this.quantity++
+    this.quantityChanged.emit(this.quantity)
   }
 
   remove(){
     this.quantity--
+    if (this.quantity < 1){
+      this.quantity = 1
+    }
+    this.quantityChanged.emit(this.quantity)
   }
 
 }

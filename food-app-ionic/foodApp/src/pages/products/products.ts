@@ -42,4 +42,9 @@ export class ProductsPage {
     }
   }
 
+  quantityChanged(product: ProductModel, event): void{
+    console.log(product)
+    console.log(event)
+  }
+
 }

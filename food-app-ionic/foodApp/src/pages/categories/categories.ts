@@ -29,7 +29,7 @@ export class CategoriesPage {
 
   openProducts(category: CategoryModel): void{
     localStorage.setItem(ConfigHelper.storageKeys.selectedCategory, JSON.stringify(category))
-    this.navCtrl.setRoot('TabsPage')
+    this.navCtrl.setRoot('ProductsPage')
   }
 
   private openProduct(): void{

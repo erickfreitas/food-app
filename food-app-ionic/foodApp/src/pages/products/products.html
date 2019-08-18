@@ -14,8 +14,9 @@
       <div class="description">{{product.description}}</div>
       <div class="price">{{product.price | real}}</div>
       <div class="quantity">
-        <quantity></quantity>
+        <quantity (quantityChanged)="quantityChanged(product, $event)"></quantity>
       </div>
     </div>  
   </div>
 </ion-content>
+<tab [pagina]="'Produtos'"></tab>
