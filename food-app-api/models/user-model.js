@@ -6,6 +6,7 @@ const schema = mongoose.Schema;
 const userModel = new schema({
     name: { type: String, required: true, trim: true, index: true },
     email: { type: String, required: true },
+    phone: { type: String, required: false },
     password: { type: String, required: true },
     image: { type: String, required: false },
     active: { type: Boolean, require: true },

@@ -1,10 +1,18 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>myAccount</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content>
+  <div class="header"></div>
+  <div class="title">
+    <p>Minha Conta</p>
+  </div>
+  <div class="image" [ngStyle]="{'background-image': 'url(' + loggedUser.image + ')'}" (click)="imageOptions()"></div>
+  <div class="form">
+    <input type="text" placeholder="Name" [(ngModel)]="loggedUser.name"  />
+    <input type="number" placeholder="Phone"  [(ngModel)]="loggedUser.phone" />
+    <input type="text" placeholder="Email" [(ngModel)]="loggedUser.email"/>
 
-<ion-content padding>
-
+      <button ion-button outline color="primary" round block (click)="save()">
+        Editar Usuário
+      </button>
+  </div>
 </ion-content>
+
 <tab [pagina]="'Minha Conta'"></tab>
