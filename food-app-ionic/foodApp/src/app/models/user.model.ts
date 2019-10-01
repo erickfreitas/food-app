@@ -1,8 +1,10 @@
 export class UserModel{
-    name: String
-    email: String
-    password: String
-    confirmPassword: String
-    image: String
+    _id: string
+    name: string
+    email: string
+    phone: string
+    password: string
+    confirmPassword: string
+    image: string
     // active: Boolean
 }

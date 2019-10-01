@@ -19,7 +19,7 @@ class userRepository{
     }
 
     async getById(id){
-        return await this._baseRepository._model.findById(id, 'name email _id image');
+        return await this._baseRepository._model.findById(id, 'name email _id image phone');
     }
 
     async getByEmail(email){
@@ -36,7 +36,8 @@ class userRepository{
             _id: id,
             name: data.name,
             email: data.email,
-            image: data.image
+            image: data.image,
+            phone: data.phone
         });
         return await this._baseRepository._model.findById(updatedUser.id, this._projection);
     }

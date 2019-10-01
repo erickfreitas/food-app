@@ -6,8 +6,8 @@
   <div class="image" [ngStyle]="{'background-image': 'url(' + loggedUser.image + ')'}" (click)="imageOptions()"></div>
   <div class="form">
     <input type="text" placeholder="Name" [(ngModel)]="loggedUser.name"  />
-    <input type="number" placeholder="Phone"  [(ngModel)]="loggedUser.phone" />
     <input type="text" placeholder="Email" [(ngModel)]="loggedUser.email"/>
+    <input type="text" placeholder="Phone"  [(ngModel)]="loggedUser.phone" />
 
       <button ion-button outline color="primary" round block (click)="save()">
         Editar Usuário
