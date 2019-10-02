@@ -2,7 +2,7 @@ import { ProductModel } from './../../app/models/product.model';
 import { ProductProvider } from './../../providers/product/product';
 import { ConfigHelper } from './../../app/helpers/config-helper';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { CategoryModel } from '../../app/models/category.model';
 
 @IonicPage()
@@ -17,7 +17,8 @@ export class ProductsPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private productProvider: ProductProvider) {
+              private productProvider: ProductProvider,
+              public modalCtrl: ModalController) {
 
   }
 
@@ -45,6 +46,11 @@ export class ProductsPage {
   quantityChanged(product: ProductModel, event): void{
     console.log(product)
     console.log(event)
+  }
+
+  viewProduct(product: ProductModel) {
+    let modal = this.modalCtrl.create('ProductDetailPage', { product: product})
+    modal.present()
   }
 
 }

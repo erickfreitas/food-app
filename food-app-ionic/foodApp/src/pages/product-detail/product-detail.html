@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color-primary>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()" >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Visualizar Produto</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <div class="image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"></div>
+  <ion-list padding>
+    <ion-item text-wrap>
+      <h2>Nome</h2>
+      <p>{{product.name}}</p>
+    </ion-item>
+    <ion-item text-wrap>
+      <h2>Descrição</h2>
+      <p>{{product.description}}</p>
+    </ion-item>
+    <ion-item text-wrap>
+      <h2>Preço</h2>
+      <p>{{product.price | real}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -3,7 +3,7 @@
     <name>FoodApp</name>
     <description>App to ask for food.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.100.8:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -86,7 +86,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <allow-navigation href="http://192.168.100.8:8100" sessionid="76fbd211" />
     <engine name="ios" spec="^5.0.1" />
     <engine name="android" spec="6.3.0" />
 </widget>
