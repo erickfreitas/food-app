@@ -20,9 +20,14 @@
       <h2>Descrição</h2>
       <p>{{product.description}}</p>
     </ion-item>
-    <ion-item text-wrap>
-      <h2>Preço</h2>
+    <ion-item text-wrap class="price">
       <p>{{product.price | real}}</p>
     </ion-item>
   </ion-list>
 </ion-content>
+
+<ion-footer text-center padding>
+  <ion-row>
+      <button ion-button block outline round color="primary" (click)="addToCart()">Adicionar ao Carrinho</button>
+  </ion-row>
+</ion-footer>
