@@ -11,7 +11,7 @@
 
 <ion-content no-padding>
   <ion-list no-lines>
-    <ion-item *ngFor="let category  of categories" (click)="openCategoryForm(category)" text-wrap>
+    <ion-item *ngFor="let category  of categories" (click)="openCategoryForm(category)" text-wrap tappable>
       {{ category.title }}
     </ion-item>
   </ion-list>

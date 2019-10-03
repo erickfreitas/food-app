@@ -6,7 +6,7 @@
   </div>
   <div class="blur"></div>
   <p class=title>O que deseja comer hoje?</p>
-  <div class="category" *ngFor="let category of categories | orderBy:'title'" (click)="openProducts(category)">
+  <div class="category" *ngFor="let category of categories | orderBy:'title'" (click)="openProducts(category)" tappable>
     <div class="image" [ngStyle]="{'background-image': 'url(' + category.image + ')'}"></div>
     <p>{{category.title}}</p>
   </div>

@@ -8,8 +8,8 @@
     </div>
   </div>  
   <div class="products">
-    <div class="product" *ngFor="let product of products" (click)="viewProduct(product)" tappable>
-      <div class="image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"></div>
+    <div class="product" *ngFor="let product of products">
+      <div class="image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}" (click)="viewProduct(product)" tappable></div>
       <div class="title">{{product.name}}</div>
       <div class="description">{{product.description}}</div>
       <div class="price">{{product.price | real}}</div>

@@ -2,6 +2,13 @@ page-products {
     ion-content {
         background: #F8F8F8 !important;
     }    
+    .header{
+        position: fixed;
+        width: 100%;
+        background: red;
+        height: 200px;
+        background: linear-gradient(to bottom, rgba(255,0,0,1) 0%, rgba(139,0,0,1) 100%);
+    }
     .title .card {
         float: right;
         margin-top: 17px;
