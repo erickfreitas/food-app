@@ -13,23 +13,53 @@ export class ShoppingCartProvider {
   private shoppingCartObservable: any
 
   constructor(public http: HttpClient) {
+    this._shoppingCart.dateTime = new Date()
+
+    //criando observable de carrinho
     this.shoppingCart = Observable.create(observable => {
       this.shoppingCartObservable = observable
+      this.shoppingCartObservable.next(this._shoppingCart)
     })
+
   }
 
-  getShoppingCart(): Observable<ShoppingCartModel> {
+  public getShoppingCart(): Observable<ShoppingCartModel> {
     return this.shoppingCart
   }
 
-  addItem(product: ProductModel): void{
-    let shoppingCartItem = new ShoppingCartItemModel();
-    shoppingCartItem.product = product
-    shoppingCartItem.quantity = 1
+  public addItem(product: ProductModel): void{
+    this._shoppingCart.items.forEach((item) =>{
+      let productExist = false;
 
-    this._shoppingCart.items.push(shoppingCartItem)
+      if (item.product._id == product._id ) {
+        item.quantity++;
+        productExist = true;
+      }
 
-    this.shoppingCartObservable.next(this._shoppingCart)
+      if (!productExist) {
+        let shoppingCartItem = new ShoppingCartItemModel();
+        shoppingCartItem.product = product
+        shoppingCartItem.quantity = 1
+
+        this._shoppingCart.items.push(shoppingCartItem)
+      }
+      
+      this.shoppingCartObservable.next(this._shoppingCart)
+    })
   }
+
+  public removeItem(product: ProductModel): void{
+    
+  }
+
+  // public addItem(product: ProductModel): void{
+  //   let shoppingCartItem = new ShoppingCartItemModel();
+  //   shoppingCartItem.product = product
+  //   shoppingCartItem.quantity = 1
+
+  //   this._shoppingCart.items.push(shoppingCartItem)
+
+  //   this.shoppingCartObservable.next(this._shoppingCart)
+  // }
 
 }
