@@ -6,9 +6,10 @@
 <ion-content no-padding>
   <div class="value">
     <h2>{{totalProducts | real}}</h2>
+    <small>Seu pedido atual</small>
   </div>
   <div class="finish-button">
-    <div class="button"></div>
+    <div class="button" tappable>Finalizar Pedido</div>
   </div>
   <div class="products">
     <div class="product" *ngFor="let product of products">

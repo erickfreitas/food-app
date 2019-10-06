@@ -9,6 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ShoppingCartPage {
 
   products: any
+  totalProducts = 0
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -1,3 +1,32 @@
 page-shopping-cart {
+    .value {
+        background: linear-gradient(to bottom, rgba(189, 8, 28, 1) 0%, rgba(139, 8, 22, 1) 100%);
+        height: 150px;
+        text-align: center;
+        color: white;
+        padding: 20px;
+    }
 
+    .value small {
+        font-size: 1.4rem;
+    }
+
+    .button{
+        color: darkred;
+        font-weight: bold;
+        font-size: 1.5rem;
+        padding: 10px;
+        text-align: center;
+        width: calc(100% - 80px);
+        margin-left: 40px;
+        border-radius: 20px;
+        top: -20px;
+        border: 1px solid #F2AF22;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        background: linear-gradient(to bottom, rgba(234, 175, 57, 1) 0%, rgba(255, 177, 0, 1) 86%, rgba(234, 175, 57, 1) 100%);
+    }
+
+    .header-md::after {
+        background: none !important;
+    }
 }
