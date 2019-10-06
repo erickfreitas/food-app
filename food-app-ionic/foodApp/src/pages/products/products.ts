@@ -1,3 +1,5 @@
+import { ShoppingCartModel } from './../../app/models/shopping-cart.model';
+import { ShoppingCartProvider } from './../../providers/shopping-cart/shopping-cart';
 import { ProductModel } from './../../app/models/product.model';
 import { ProductProvider } from './../../providers/product/product';
 import { ConfigHelper } from './../../app/helpers/config-helper';
@@ -14,11 +16,13 @@ export class ProductsPage {
 
   selectedCategory: CategoryModel = new CategoryModel()
   products: Array<ProductModel> = new Array<ProductModel>()
+  shoppingCart: ShoppingCartModel = new ShoppingCartModel()
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private productProvider: ProductProvider,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              private shoppingCartProvider: ShoppingCartProvider) {
 
   }
 
@@ -27,6 +31,10 @@ export class ProductsPage {
   }
 
   ionViewWillEnter(){
+    this.shoppingCartProvider.getShoppingCart().subscribe(data => {
+      this.shoppingCart = data
+      console.log(this.shoppingCart)
+    })
     this.selectedCategory = <CategoryModel>JSON.parse(localStorage.getItem(ConfigHelper.storageKeys.selectedCategory))
     this.load()
   }
@@ -43,9 +51,10 @@ export class ProductsPage {
     }
   }
 
-  quantityChanged(product: ProductModel, event): void{
+  quantityChanged(product: ProductModel, event: number): void{
     console.log(product)
     console.log(event)
+    this.shoppingCartProvider.addItem(product)
   }
 
   viewProduct(product: ProductModel) {

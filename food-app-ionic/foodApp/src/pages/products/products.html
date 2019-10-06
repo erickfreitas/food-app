@@ -4,15 +4,17 @@
     <p>{{selectedCategory.title}}</p>
     <div class="card" tappable (click)="viewShoppingCart()">
       <ion-icon name="cart"></ion-icon>
-      <span>0 itens</span>
+      <span>{{shoppingCart.items.length}} itens</span>
     </div>
   </div>  
   <div class="products">
     <div class="product" *ngFor="let product of products">
-      <div class="image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}" (click)="viewProduct(product)" tappable></div>
-      <div class="title">{{product.name}}</div>
-      <div class="description">{{product.description}}</div>
-      <div class="price">{{product.price | real}}</div>
+      <div (click)="viewProduct(product)" tappable>
+          <div class="image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"></div>
+          <div class="title">{{product.name}}</div>
+          <div class="description">{{product.description}}</div>
+          <div class="price">{{product.price | real}}</div>
+      </div>      
       <div class="quantity">
         <quantity (quantityChanged)="quantityChanged(product, $event)"></quantity>
       </div>
