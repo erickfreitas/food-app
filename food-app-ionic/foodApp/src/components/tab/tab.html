@@ -1,5 +1,5 @@
 <ion-footer class="tabs">
-  <div class="tab" *ngFor="let item of tabs" [ngClass]="{'active': item.isSelected}" (click)="selectTab(item.path)">
+  <div class="tab" *ngFor="let item of tabs" [ngClass]="{'active': item.isSelected}" (click)="selectTab(item.path)" tappable>
     <ion-icon name="{{item.icon}}"></ion-icon>
     <p>{{item.label}}</p>
   </div>

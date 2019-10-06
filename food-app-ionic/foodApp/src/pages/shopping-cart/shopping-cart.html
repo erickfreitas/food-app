@@ -1,12 +1,15 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Carrinho de Compras</ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content no-padding>
-  <div class="header"></div>
-  <div class="title">
-    <p>{{selectedCategory.title}}</p>
-    <div class="card" tappable (click)="viewShoppingCart()">
-      <ion-icon name="cart"></ion-icon>
-      <span>0 itens</span>
-    </div>
-  </div>  
+  <div class="value">
+    <h2>{{totalProducts | real}}</h2>
+  </div>
+  <div class="finish-button">
+    <div class="button"></div>
+  </div>
   <div class="products">
     <div class="product" *ngFor="let product of products">
       <div class="image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}" (click)="viewProduct(product)" tappable></div>
@@ -19,4 +22,4 @@
     </div>  
   </div>
 </ion-content>
-<tab [pagina]="'Produtos'"></tab>
+<tab [pagina]="''"></tab>

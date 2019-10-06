@@ -53,4 +53,7 @@ export class ProductsPage {
     modal.present()
   }
 
+  viewShoppingCart(): void{
+    this.navCtrl.push('ShoppingCartPage')
+  }
 }

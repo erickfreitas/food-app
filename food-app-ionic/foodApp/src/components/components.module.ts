@@ -6,7 +6,9 @@ import { TabComponent } from './tab/tab';
 	declarations: [QuantityComponent,
     TabComponent],
 	imports: [IonicModule],
-	exports: [QuantityComponent,
-    TabComponent]
+	exports: [
+		QuantityComponent,
+		TabComponent
+	]
 })
 export class ComponentsModule {}
