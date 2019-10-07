@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { ShoppingCartModel } from '../../app/models/shopping-cart.model';
+import { ShoppingCartProvider } from '../../providers/shopping-cart/shopping-cart';
 
 @Component({
   selector: 'quantity',
@@ -6,11 +8,15 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class QuantityComponent {
   quantity: number = 0
+  shoppingCart: ShoppingCartModel = new ShoppingCartModel()
 
   @Output() quantityChanged = new EventEmitter()
 
-  constructor() {
-    console.log('Hello QuantityComponent Component');
+  constructor(private shoppingCartProvider: ShoppingCartProvider) {
+    this.shoppingCartProvider.getShoppingCart().subscribe(data => {
+      this.shoppingCart = data
+      console.log(this.shoppingCart)
+    })
   }
 
   add(){
