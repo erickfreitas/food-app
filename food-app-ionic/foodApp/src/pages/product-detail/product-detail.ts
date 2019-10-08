@@ -1,3 +1,4 @@
+import { ShoppingCartProvider } from './../../providers/shopping-cart/shopping-cart';
 import { AlertProvider } from './../../providers/alert/alert';
 import { ProductModel } from './../../app/models/product.model';
 import { Component } from '@angular/core';
@@ -15,7 +16,8 @@ export class ProductDetailPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public viewCtrl: ViewController,
-              private alertProvider : AlertProvider) {
+              private alertProvider : AlertProvider,
+              private shoppingCartProvider: ShoppingCartProvider) {
     this.product = <ProductModel>navParams.get('product')
   }
 
@@ -28,6 +30,7 @@ export class ProductDetailPage {
   }
 
   addToCart(){
+    this.shoppingCartProvider.addItem(this.product)
     this.alertProvider.toast('Produto adicionado ao carrinho', 'bottom')
     this.viewCtrl.dismiss()
   }

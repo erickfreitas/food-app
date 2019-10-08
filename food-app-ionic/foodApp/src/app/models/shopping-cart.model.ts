@@ -9,7 +9,7 @@ export class ShoppingCartModel {
     }
 
     getTotalValue():number {
-        let totalValue: number
+        let totalValue: number = 0
         this.items.forEach((item) => {
             totalValue += item.product.price * item.quantity
         })

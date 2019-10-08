@@ -54,7 +54,7 @@ export class ProductsPage {
   quantityChanged(product: ProductModel, event: number): void{
     console.log(product)
     console.log(event)
-    this.shoppingCartProvider.addItem(product)
+    //this.shoppingCartProvider.addItem(product)
   }
 
   viewProduct(product: ProductModel) {

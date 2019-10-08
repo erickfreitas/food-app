@@ -27,6 +27,15 @@ export class ShoppingCartProvider {
     return this.shoppingCart
   }
 
+  public getProductQuantity(product: ProductModel): number {
+    debugger
+    let item = this._shoppingCart.items.filter(x => x.product._id == product._id)[0];
+    if (item)
+      return item.quantity;
+    else
+      return 0;
+  }
+
   public addItem(product: ProductModel): void{
     let productExist = false;
 
@@ -60,7 +69,7 @@ export class ShoppingCartProvider {
         }
       }
     }
-    
+
     this.shoppingCartObservable.next(this._shoppingCart)
   }
 }

@@ -16,7 +16,7 @@
           <div class="price">{{product.price | real}}</div>
       </div>      
       <div class="quantity">
-        <quantity (quantityChanged)="quantityChanged(product, $event)"></quantity>
+        <quantity [product]="product" (quantityChanged)="quantityChanged(product, $event)"></quantity>
       </div>
     </div>  
   </div>
