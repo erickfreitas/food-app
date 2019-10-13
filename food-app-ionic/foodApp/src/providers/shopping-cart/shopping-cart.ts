@@ -1,5 +1,7 @@
+import { ConfigHelper } from './../../app/helpers/config-helper';
+import { HttpResultModel } from './../../app/models/http-result.model';
+import { HttpProvider } from './../http/http';
 import { ProductModel } from './../../app/models/product.model';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCartModel } from '../../app/models/shopping-cart.model';
@@ -13,7 +15,7 @@ export class ShoppingCartProvider {
   private shoppingCart: Observable<ShoppingCartModel>
   private shoppingCartObservable: any
 
-  constructor(public http: HttpClient,
+  constructor(public http: HttpProvider,
               public events: Events) {
     this._shoppingCart.dateTime = new Date()
 
@@ -74,5 +76,26 @@ export class ShoppingCartProvider {
     //publicando evento de atualiação para o componente de quantity
     this.events.publish('updateProductQuantity')
     this.shoppingCartObservable.next(this._shoppingCart)
+  }
+
+  public saveOrder(shoppingCart: ShoppingCartModel): Promise<HttpResultModel> {
+    let order: any = {} 
+    order.totalValue = shoppingCart.getTotalValue()
+    order.items = []
+
+    shoppingCart.items.forEach(item => {
+      order.items.push({
+        quantity: item.quantity,
+        productId: item.product._id
+      })
+    });
+
+    order.items = JSON.stringify(order.items)
+
+    return this.http.post(`${ConfigHelper.url}/orders`, order)
+  }
+
+  public getOrders(): Promise<HttpResultModel> {
+    return this.http.get(`${ConfigHelper.url}/orders`)
   }
 }

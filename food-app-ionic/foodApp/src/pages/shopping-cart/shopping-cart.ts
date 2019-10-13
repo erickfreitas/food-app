@@ -1,3 +1,4 @@
+import { AlertProvider } from './../../providers/alert/alert';
 import { ShoppingCartProvider } from './../../providers/shopping-cart/shopping-cart';
 import { ShoppingCartModel } from './../../app/models/shopping-cart.model';
 import { Component } from '@angular/core';
@@ -18,6 +19,7 @@ export class ShoppingCartPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private shoppingCartProvider: ShoppingCartProvider,
+              private alert: AlertProvider,
               public modalCtrl: ModalController) {
     
   }
@@ -32,5 +34,18 @@ export class ShoppingCartPage {
     let modal = this.modalCtrl.create('ProductDetailPage', { product: product})
     modal.present()
   }
+
+  async finalizeOrder():Promise<void> {
+    try {
+      let result = await this.shoppingCartProvider.saveOrder(this.shoppingCart)
+      if (result.success) {
+        this.navCtrl.setRoot('MyOrdersPage')
+        this.alert.toast('Pedido realizado com sucesso.', 'bottom')
+      }
+    }
+    catch(error) {
+
+    }
+  } 
 
 }

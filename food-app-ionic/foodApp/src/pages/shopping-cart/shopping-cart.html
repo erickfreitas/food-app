@@ -9,7 +9,7 @@
     <small>Seu pedido atual</small>
   </div>
   <div class="finish-button">
-    <div class="shoppingcart-button" tappable>Finalizar Pedido</div>
+    <div class="shoppingcart-button" tappable (click)="finalizeOrder()">Finalizar Pedido</div>
   </div>
   <div class="products">
     <div class="product" *ngFor="let item of shoppingCart.items">
