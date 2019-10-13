@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCartModel } from '../../app/models/shopping-cart.model';
 import { ShoppingCartItemModel } from '../../app/models/shopping-cart-item.model';
+import { Events } from 'ionic-angular';
 
 @Injectable()
 export class ShoppingCartProvider {
@@ -12,7 +13,8 @@ export class ShoppingCartProvider {
   private shoppingCart: Observable<ShoppingCartModel>
   private shoppingCartObservable: any
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient,
+              public events: Events) {
     this._shoppingCart.dateTime = new Date()
 
     //criando observable de carrinho
@@ -28,7 +30,6 @@ export class ShoppingCartProvider {
   }
 
   public getProductQuantity(product: ProductModel): number {
-    debugger
     let item = this._shoppingCart.items.filter(x => x.product._id == product._id)[0];
     if (item)
       return item.quantity;
@@ -54,7 +55,8 @@ export class ShoppingCartProvider {
 
       this._shoppingCart.items.push(shoppingCartItem)
     }
-
+    //publicando evento de atualiação para o componente de quantity
+    this.events.publish('updateProductQuantity')
     this.shoppingCartObservable.next(this._shoppingCart)
   }
 
@@ -69,7 +71,8 @@ export class ShoppingCartProvider {
         }
       }
     }
-
+    //publicando evento de atualiação para o componente de quantity
+    this.events.publish('updateProductQuantity')
     this.shoppingCartObservable.next(this._shoppingCart)
   }
 }
