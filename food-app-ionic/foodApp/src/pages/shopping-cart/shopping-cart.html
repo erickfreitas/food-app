@@ -9,16 +9,16 @@
     <small>Seu pedido atual</small>
   </div>
   <div class="finish-button">
-    <div class="button" tappable>Finalizar Pedido</div>
+    <div class="shoppingcart-button" tappable>Finalizar Pedido</div>
   </div>
   <div class="products">
-    <div class="product" *ngFor="let product of products">
-      <div class="image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}" (click)="viewProduct(product)" tappable></div>
-      <div class="title">{{product.name}}</div>
-      <div class="description">{{product.description}}</div>
-      <div class="price">{{product.price | real}}</div>
+    <div class="product" *ngFor="let item of shoppingCart.items">
+      <div class="image" [ngStyle]="{'background-image': 'url(' + item.product.image + ')'}" (click)="viewProduct(item.product)" tappable></div>
+      <div class="title">{{item.product.name}}</div>
+      <div class="description">{{item.product.description}}</div>
+      <div class="price">{{item.product.price | real}}</div>
       <div class="quantity">
-        <quantity (quantityChanged)="quantityChanged(product, $event)"></quantity>
+        <quantity [product]="item.product"></quantity>
       </div>
     </div>  
   </div>

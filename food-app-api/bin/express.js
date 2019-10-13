@@ -7,6 +7,7 @@ const variables = require('../bin/configuration/variables');
 const categoryRouter = require('../routes/category-router');
 const productRouter = require('../routes/product-router');
 const userRouter = require('../routes/user-router');
+const orderRouter = require('../routes/order-router');
 
 //Invocando Api Express
 const app = express();
@@ -21,6 +22,7 @@ mongoose.connect(variables.Database.connection, { useNewUrlParser: true, useCrea
 app.use('/api/categories', categoryRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
 
 //Exportando Api
 module.exports = app;

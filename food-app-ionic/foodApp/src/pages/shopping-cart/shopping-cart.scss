@@ -15,7 +15,7 @@ page-shopping-cart {
         font-size: 3.2rem;
     }
 
-    .button{
+    .shoppingcart-button{
         color: darkred;
         font-weight: bold;
         font-size: 1.5rem;
@@ -25,6 +25,7 @@ page-shopping-cart {
         margin-left: 40px;
         border-radius: 20px;
         top: -20px;
+        position: relative;
         border: 1px solid #F2AF22;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         background: linear-gradient(to bottom, rgba(234, 175, 57, 1) 0%, rgba(255, 177, 0, 1) 86%, rgba(234, 175, 57, 1) 100%);
@@ -33,4 +34,45 @@ page-shopping-cart {
     .header-md::after {
         background: none !important;
     }
+
+    .products {
+        padding-bottom: 80px;
+   }
+   .product {
+       width: 90%;
+       background: white;
+       display: block;
+       position: relative;
+       margin: 0 auto;
+       margin-bottom: 15px;
+       border: 1px solid #E2DDDD;
+       box-shadow: 3px 3px 4px rgba(0,0,0, 0.2);
+       padding: 10px;
+       overflow: auto;
+   }
+   .product .title {
+       color: red;
+       font-size: 1.6rem;
+       margin-bottom: 4px;
+   }
+   .product .description {
+       height: 50px;
+   }
+   .image {
+       float: left;
+       border: 1px solid #E2DDDD;
+       width: 79px;
+       height: 100px;
+       margin-right: 10px;
+       border-radius: 10px;
+       background-size: cover;
+       background-position: 50% 50%;
+   }
+   .product .price span {
+       font-weight: bold;
+       font-size: 1.3rem;
+   }
+   .product .price {
+       font-size: 2rem;
+   }
 }

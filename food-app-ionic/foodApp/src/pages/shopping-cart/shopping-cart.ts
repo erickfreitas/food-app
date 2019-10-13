@@ -1,7 +1,8 @@
 import { ShoppingCartProvider } from './../../providers/shopping-cart/shopping-cart';
 import { ShoppingCartModel } from './../../app/models/shopping-cart.model';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { ProductModel } from '../../app/models/product.model';
 
 @IonicPage()
 @Component({
@@ -16,14 +17,20 @@ export class ShoppingCartPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private shoppingCartProvider: ShoppingCartProvider) {
-    shoppingCartProvider.getShoppingCart().subscribe((data => {
+              private shoppingCartProvider: ShoppingCartProvider,
+              public modalCtrl: ModalController) {
+    
+  }
+
+  ionViewDidLoad() {
+    this.shoppingCartProvider.getShoppingCart().subscribe((data => {
       this.shoppingCart = data
     }))
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ShoppingCartPage');
+  viewProduct(product: ProductModel) {
+    let modal = this.modalCtrl.create('ProductDetailPage', { product: product})
+    modal.present()
   }
 
 }
