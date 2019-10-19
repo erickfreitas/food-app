@@ -48,7 +48,6 @@ export class AdmCategoryPage {
 
   async saveOrEdit(category: CategoryModel): Promise<void>{
     let result = new HttpResultModel()
-    debugger
     if (category._id == null){
       result = await this.categoryProvider.post(category)
       this.alert.toast('Cadastro realizado com sucesso.', 'buttom')

@@ -1,4 +1,5 @@
 import { Camera } from '@ionic-native/camera';
+import { OneSignal } from '@ionic-native/onesignal';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -42,6 +43,7 @@ import { ShoppingCartProvider } from '../providers/shopping-cart/shopping-cart';
     CategoryProvider,
     CameraProvider,
     Camera,
+    OneSignal,
     ProductProvider,
     ShoppingCartProvider
   ]
