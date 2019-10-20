@@ -10,7 +10,7 @@ function orderController() {
 }
 
 orderController.prototype.get = async (req, res) => {
-    let result = _repository.getByUserId(req.loggedUser._id);
+    let result = await _repository.getByUserId(req.loggedUser.user._id);
     res.status(200).send(result);
 }
 
@@ -23,7 +23,7 @@ orderController.prototype.post = async (req, res) => {
     validationContract.isRequired(req.body.totalValue, 'Informe o valor total.');
     validationContract.isRequired(req.body.items, 'Informe os itens do pedido.');
 
-    req.body.userId = req.loggedUser._id;
+    req.body.userId = req.loggedUser.user._id;
 
     controllerBase.post(_repository, validationContract, req, res);
 }
