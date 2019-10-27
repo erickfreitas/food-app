@@ -9,7 +9,7 @@
   "proxies": [
     {
       "path": "/app",
-      "proxyUrl": "http://localhost:3000/api"
+      "proxyUrl": "http://foodapp-com.umbler.net/api/"
     }
   ],
   "id": "3bf0810b"

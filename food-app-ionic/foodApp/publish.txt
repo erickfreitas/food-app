@@ -1,0 +1,16 @@
+Toolkey serve para gerar o certificado do app,não pode perder o arquivo do certificado, 
+senão tera que recriar tudo na loja do google quando for atualizar.
+
+senha do app: foodapp#123
+
+keytool -genkey -v -keystore foodapp.keystore -alias foodapp -keyalg RSA -keysize 2048 -validity 10000
+
+JarSigner server para fazer a assinatura do apk
+
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../foodapp.keystore  c:/Ionic/food-app/food-app-ionic/foodApp/platforms/android/build/outputs/apk/android-release-unsigned.apk foodapp
+
+ZipAlign faz o empacotamento do aplicativo
+
+C:\Program Files (x86)\Android\android-sdk\build-tools\28.0.3\zipalign.exe"
+
+zipalign -v 4 android-release-unsigned.apk NOMEAPPFINAL.apk
