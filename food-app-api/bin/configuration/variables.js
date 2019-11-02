@@ -1,6 +1,6 @@
 const variables = {
     Api: {
-        port: process.env.port || 3000
+        port: process.env.PORT || 3000
     },
     Database: {
         connection : process.env.connection || 'mongodb+srv://foodapp:C4r0BQz882isvRVu@cluster0-kek1d.mongodb.net/food-app?retryWrites=true&w=majority'

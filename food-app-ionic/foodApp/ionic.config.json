@@ -9,7 +9,7 @@
   "proxies": [
     {
       "path": "/app",
-      "proxyUrl": "http://foodapp-com.umbler.net/api/"
+      "proxyUrl": "https://api-app-food.herokuapp.com/api/"
     }
   ],
   "id": "3bf0810b"
