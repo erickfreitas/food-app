@@ -78,7 +78,8 @@ export class HttpProvider {
             }
             else{
               this.spinner.hide()
-              this.alert.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom')
+              //this.alert.toast('Não foi possível realizar o processamento da informação, verifique sua conexão e tente novamente', 'bottom')
+              this.alert.toast(JSON.stringify(error), 'bottom')
             }
             resolve({ success: false, data: undefined, error: error })
           }

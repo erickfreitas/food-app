@@ -1,6 +1,6 @@
 export class ConfigHelper{
     // public static url: string = "http://localhost:3000/api"
-    public static url: string = "/app"
+    public static url: string = "https://api-app-food.herokuapp.com/api"
     public static storageKeys = {
         token: 'foodapp.token',
         user: 'foodapp.user',

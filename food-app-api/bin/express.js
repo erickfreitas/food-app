@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const variables = require('../bin/configuration/variables');
+var cors = require('cors');
 
 //Rotas
 const categoryRouter = require('../routes/category-router');
@@ -11,6 +12,8 @@ const orderRouter = require('../routes/order-router');
 
 //Invocando Api Express
 const app = express();
+
+app.use(cors());
 
 //Configurando o parse do body para Json
 app.use(bodyParser.json({limit: '50mb'}));
