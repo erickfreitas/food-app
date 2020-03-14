@@ -1,4 +1,4 @@
-ionic cordova build android --prod -- release
+ionic cordova build android --prod --release
 
 Toolkey serve para gerar o certificado do app,não pode perder o arquivo do certificado, 
 senão tera que recriar tudo na loja do google quando for atualizar.
