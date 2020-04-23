@@ -4,7 +4,7 @@
   "description": "api desenvolvida como backend do app food-app",
   "main": "server.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha --timeout 900000",
+    "test": "node ./node_modules/mocha/bin/mocha --timeout 10000",
     "start": "node server"
   },
   "author": "Erick Freitas",

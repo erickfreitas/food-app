@@ -29,20 +29,16 @@ describe('Usuários', () => {
                 console.log('Novo usuário salvo.')
 
                 //Autenticando usuário na aplicação
-                describe('/POST', () => {
-                    it('autenticando usuário na API', (done) => {
-                        chai.request(server)
-                            .post('/api/users/authenticate')
-                            .send({ email: user.email, password: 'mocha@123' })
-                            .end((error, response) => {
+                chai.request(server)
+                    .post('/api/users/authenticate')
+                    .send({ email: user.email, password: 'mocha@123' })
+                    .end((error, response) => {
 
-                                //token = response.body.token;
-                                console.log(response.body);
+                        token = response.body.token;
+                        console.log(response.body);
 
-                                done();
-                            });
-                    })
-                });
+                        done();
+                    });
             });
         });        
     })
